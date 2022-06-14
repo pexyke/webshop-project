@@ -66,7 +66,7 @@ const App = () => {
           <div>
             <Routes>
               {/* Dashboard */}
-              <Route path="/ecommerce" element={<ECommerce />} />
+              <Route path="/admin/ecommerce" element={<ECommerce />} />
               <Route path="/admin" element={<ECommerce />} />
 
               {/* Pages */}
