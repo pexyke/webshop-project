@@ -6,7 +6,6 @@ import { Header } from '../components';
 
 const Employees = () => {
  
-
   const editing = { allowDeleting: true, allowEditing: true };
 
   return (

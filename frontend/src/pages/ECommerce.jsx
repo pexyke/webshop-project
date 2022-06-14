@@ -1,13 +1,14 @@
 import React from 'react';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
-import { Stacked, Pie, Button, LineChart, SparkLine } from '../components';
+import {  Button } from '../components';
+import SparkLine from '../components/Charts/SparkLine';
+import Stacked from '../components/Charts/Stacked';
 import { earningData, medicalproBranding, recentTransactions, weeklyStats, dropdownData, SparklineAreaData, ecomPieChartData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 import product9 from '../data/product9.jpg';
 
 const ECommerce = () => {
-  console.log("first render of ECommerce")
   return (
     <div className="mt-24">
       <div className="flex flex-wrap lg:flex-nowrap justify-center ">
