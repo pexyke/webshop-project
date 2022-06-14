@@ -12,6 +12,8 @@ import {
   PdfExport,
   Edit,
   Inject,
+  Search,
+  Toolbar,
 } from "@syncfusion/ej2-react-grids";
 
 import { ordersData, contextMenuItems, ordersGrid } from "../data/dummy";
@@ -31,6 +33,7 @@ const Orders = () => {
         allowPdfExport
         contextMenuItems={contextMenuItems}
         editSettings={editing}
+        toolbar={['Search']}
       >
         <ColumnsDirective>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -48,6 +51,8 @@ const Orders = () => {
             ExcelExport,
             Edit,
             PdfExport,
+            Search,
+            Toolbar
           ]}
         />
       </GridComponent>
