@@ -1,25 +1,16 @@
-import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
-import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
+import { Navbar, Footer, Sidebar } from "./components";
 import {
   ECommerce,
   Orders,
   Calendar,
   Employees,
-  Stacked,
-  Pyramid,
   Customers,
   Kanban,
-  Area,
-  Bar,
-  Pie,
-  Financial,
   ColorPicker,
-  ColorMapping,
-  Line,
   Editor,
 } from "./pages";
 import "./App.css";
@@ -61,27 +52,26 @@ const App = () => {
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
               <Navbar />
             </div>
-          
 
-          <div>
-            <Routes>
-              {/* Dashboard */}
-              <Route path="/admin/ecommerce" element={<ECommerce />} />
-              <Route path="/admin" element={<ECommerce />} />
+            <div>
+              <Routes>
+                {/* Dashboard */}
+                <Route path="/admin/ecommerce" element={<ECommerce />} />
+                <Route path="/admin" element={<ECommerce />} />
 
-              {/* Pages */}
-              <Route path="/admin/employees" element={<Employees />} />
-              <Route path="/admin/orders" element={<Orders />} />
-              <Route path="/admin/customers" element={<Customers />} />
+                {/* Pages */}
+                <Route path="/admin/employees" element={<Employees />} />
+                <Route path="/admin/orders" element={<Orders />} />
+                <Route path="/admin/customers" element={<Customers />} />
 
-              {/* Apps */}
-              <Route path="/admin/kanban" element={<Kanban />} />
-              <Route path="/admin/editor" element={<Editor />} />
-              <Route path="/admin/calendar" element={<Calendar />} />
-              <Route path="/admin/color-picker" element={<ColorPicker />} />
-
-            </Routes>
-          </div>
+                {/* Apps */}
+                <Route path="/admin/kanban" element={<Kanban />} />
+                <Route path="/admin/editor" element={<Editor />} />
+                <Route path="/admin/calendar" element={<Calendar />} />
+                <Route path="/admin/color-picker" element={<ColorPicker />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
         </div>
       </BrowserRouter>

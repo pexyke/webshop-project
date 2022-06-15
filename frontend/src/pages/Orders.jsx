@@ -33,7 +33,7 @@ const Orders = () => {
         allowPdfExport
         contextMenuItems={contextMenuItems}
         editSettings={editing}
-        toolbar={['Search']}
+        toolbar={["Search"]}
       >
         <ColumnsDirective>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
@@ -52,7 +52,7 @@ const Orders = () => {
             Edit,
             PdfExport,
             Search,
-            Toolbar
+            Toolbar,
           ]}
         />
       </GridComponent>
