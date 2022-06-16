@@ -16,6 +16,8 @@ import {
 import "./App.css";
 
 import { useStateContext } from "./contexts/ContextProvider";
+import Login from "./pages/Login";
+import Callback from "./pages/Callback";
 
 const App = () => {
   const { activeMenu } = useStateContext();
@@ -63,6 +65,8 @@ const App = () => {
                 <Route path="/admin/employees" element={<Employees />} />
                 <Route path="/admin/orders" element={<Orders />} />
                 <Route path="/admin/customers" element={<Customers />} />
+                <Route path="/admin/login" element={<Login />} />
+                <Route path="/admin/callback" element={<Callback />} />
 
                 {/* Apps */}
                 <Route path="/admin/kanban" element={<Kanban />} />

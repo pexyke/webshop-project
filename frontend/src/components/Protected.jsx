@@ -8,7 +8,7 @@ const Protected = ({ children }) => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/");
+      navigate("/admin/login");
     }
   }, [token]);
 

@@ -15,7 +15,7 @@ const AuthProvider = ({ children }) => {
   
 
   const auth = () => {
-    
+    console.log(process.env.REACT_APP_REDIRECT_URI)
 
     const searchParams = new URLSearchParams();
     searchParams.append("response_type", "code");
