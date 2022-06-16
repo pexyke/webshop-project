@@ -18,6 +18,7 @@ import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 import Login from "./pages/Login";
 import Callback from "./pages/Callback";
+import Protected from "./components/Protected";
 
 const App = () => {
   const { activeMenu } = useStateContext();
@@ -58,21 +59,23 @@ const App = () => {
             <div>
               <Routes>
                 {/* Dashboard */}
-                <Route path="/admin/ecommerce" element={<ECommerce />} />
-                <Route path="/admin" element={<ECommerce />} />
+                <Route path="/admin/ecommerce" element={<Protected><ECommerce /></Protected>} />
+                <Route path="/admin" element={<Protected><ECommerce /></Protected>} />
 
                 {/* Pages */}
-                <Route path="/admin/employees" element={<Employees />} />
-                <Route path="/admin/orders" element={<Orders />} />
-                <Route path="/admin/customers" element={<Customers />} />
-                <Route path="/admin/login" element={<Login />} />
-                <Route path="/admin/callback" element={<Callback />} />
+                
+                <Route path="/admin/employees" element={<Protected><Employees /></Protected>} />
+                <Route path="/admin/products" element={<Protected><Employees /></Protected>} />
+                <Route path="/admin/orders" element={<Protected><Orders /></Protected>} />
+                <Route path="/admin/customers" element={<Protected><Customers /></Protected>} />
+                <Route path="/admin/login" element={<Protected><Login /></Protected>} />
+                <Route path="/admin/callback" element={<Protected><Callback /></Protected>} />
 
                 {/* Apps */}
-                <Route path="/admin/kanban" element={<Kanban />} />
-                <Route path="/admin/editor" element={<Editor />} />
-                <Route path="/admin/calendar" element={<Calendar />} />
-                <Route path="/admin/color-picker" element={<ColorPicker />} />
+                <Route path="/admin/kanban" element={<Protected><Kanban /></Protected>} />
+                <Route path="/admin/editor" element={<Protected><Editor /></Protected>} />
+                <Route path="/admin/calendar" element={<Protected><Calendar /></Protected>} />
+                <Route path="/admin/color-picker" element={<Protected><ColorPicker /></Protected>} />
               </Routes>
             </div>
             <Footer />

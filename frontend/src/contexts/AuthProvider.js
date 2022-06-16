@@ -7,11 +7,11 @@ const AuthProvider = ({ children }) => {
 
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setToken(token);
+    const localStorageToken = localStorage.getItem("token");
+    if (localStorageToken) {
+      setToken(localStorageToken);
     }
-  }, [])
+  }, [token])
   
 
   const auth = () => {
@@ -34,9 +34,9 @@ const AuthProvider = ({ children }) => {
         code,
         provider,
       });
-      console.log("data", response.data);
-      setToken(response.data.token);
+      console.log("data", response.data.token);
       localStorage.setItem("token", response.data.token);
+      setToken(response.data.token);
     } catch (err) {
       console.log(err);
       setToken(null);

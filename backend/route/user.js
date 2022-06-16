@@ -73,7 +73,7 @@ router.post("/login", auth({ block: false }), async (req, res) => {
     process.env.SECRET_KEY,
     { expiresIn: "1h" }
   ); // conditional chaining bro
-  res.status(200).json(token);
+  res.status(200).json({token});
 
   /*
   itt FE-en ha nincs userid a most visszakuldott tokenben, akkor latni fog egy formot, csinaljon profilt !!!!
