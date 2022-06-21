@@ -1,5 +1,5 @@
 require("dotenv").config();
-const port = 4000;
+const port = process.env.PORT;
 const mongoose = require("mongoose");
 const app = require("./app");
 
@@ -16,6 +16,7 @@ mongoose
 /*
   app.listen for prod/dev mode
   docker build . -t first-backend
+
   mongodb+srv://doadmin:D520XCPUo47Q981h@first-demo-db-82fbcafe.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=first-demo-db
 
   .connect(process.env.CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })

@@ -104,7 +104,7 @@ describe("POST requests to api/user/login", () => {
 
     // then
     expect(response.status).toBe(200);
-    const responseToken = jwt.decode(response.body);
+    const responseToken = jwt.decode(response.body.token);
     expect(responseToken.providers.google).toBe(googleUserId);
     const users = await User.find();
     expect(users).toStrictEqual([]);
