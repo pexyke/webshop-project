@@ -12,7 +12,7 @@ const Callback = () => {
       const code = params.get("code");
       if (code) {
         await login(code, "google");
-        navigate("/admin/ecommerce");
+        navigate("/ecommerce");
       }
     };
     loginWithCode();

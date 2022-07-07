@@ -13,7 +13,7 @@ const Login = () => {
 
   useEffect(() => {
     if (token) {
-      navigate("/admin/ecommerce");
+      navigate("/ecommerce");
     }
   }
   , [token]);
