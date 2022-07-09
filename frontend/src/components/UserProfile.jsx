@@ -4,9 +4,10 @@ import { Button } from ".";
 import { userProfileData } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 import avatar from "../data/avatar.jpg";
+import { useAuth } from "../contexts/AuthProvider";
 
 const UserProfile = () => {
-  const { currentColor } = useStateContext();
+  const { logout } = useAuth();
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -66,13 +67,20 @@ const UserProfile = () => {
         ))}
       </div>
       <div className="mt-5">
-        <Button
+        {/* <Button
           color="white"
           bgColor={"blue"}
           text="Logout"
+          onclick={()=>console.log("first")}
           borderRadius="10px"
           width="full"
-        />
+        /> */}
+         <button
+      type="button"
+      onClick={logout}
+      style={{ backgroundColor: "blue", color: "white", borderRadius: "10px" }}
+      className={`p-3 w-full hover:drop-shadow-xl hover:bg-blue`}
+    >    Logout</button>
       </div>
     </div>
   );
