@@ -6,10 +6,12 @@ const Callback = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+ 
   useEffect(() => {
     const loginWithCode = async () => {
       const params = new URLSearchParams(window.location.search);
       const code = params.get("code");
+      console.log(code);
       if (code) {
         await login(code, "google");
         navigate("/ecommerce");

@@ -25,11 +25,13 @@ const AuthProvider = ({ children }) => {
   };
 
   const login = async (code, provider) => {
+    console.log("code: ", code, "provider: ", provider)
     try {
       const response = await http.post(config.todo_api + "/user/login", {
         code,
         provider,
       });
+
       setToken(response.data.token);
       localStorage.setItem("token", response.data.token);
       setUser(jwt(response.data.token));
