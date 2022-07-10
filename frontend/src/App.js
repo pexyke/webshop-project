@@ -19,6 +19,8 @@ import { useStateContext } from "./contexts/ContextProvider";
 import Login from "./pages/Login";
 import Callback from "./pages/Callback";
 import Protected from "./components/Protected";
+import Products from './pages/Products';
+import EditProduct from "./pages/EditProduct";
 
 const App = () => {
   const { activeMenu } = useStateContext();
@@ -65,7 +67,8 @@ const App = () => {
                 {/* Pages */}
                 
                 <Route path="/employees" element={<Protected><Employees /></Protected>} />
-                <Route path="/products" element={<Protected><Employees /></Protected>} />
+                <Route path="/products" element={<Protected><Products /></Protected>} />
+                <Route path="/edit-product/:id?" element={<Protected><EditProduct /></Protected>} />
                 <Route path="/orders" element={<Protected><Orders /></Protected>} />
                 <Route path="/customers" element={<Protected><Customers /></Protected>} />
                 <Route path="/login" element={<Protected><Login /></Protected>} />

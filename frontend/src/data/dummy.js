@@ -227,6 +227,7 @@ export const employeesGrid = [
     textAlign: 'Center' },
 ];
 
+
 export const links = [
   {
     title: 'Dashboard',
@@ -417,6 +418,65 @@ export const ordersGrid = [
   },
 ];
 
+export const productsGrid = [
+  {
+    field: "action",
+    headerText: 'Action',
+    textAlign: 'Center',
+    width: '120',
+  }, 
+  {
+    field: "image",
+    headerText: 'Image',
+    textAlign: 'Center',
+    width: '120',
+  },
+  {
+    field: 'id',
+    headerText: 'ID',
+    width: '150',
+    editType: 'dropdownedit',
+    textAlign: 'Center',
+  },
+  { field: 'name',
+    headerText: 'Product Name',
+    width: '150',
+    textAlign: 'Center',
+  },
+  {
+    field: 'price',
+    headerText: 'Price',
+    format: 'C2',
+    textAlign: 'Center',
+    editType: 'numericedit',
+    width: '150',
+  },
+  {
+    field: 'countInstock',
+    headerText: 'Count In Stock',
+    textAlign: 'Center',
+    width: '120',
+  },
+  {
+    field: 'rating',
+    headerText: 'Rating',
+    width: '120',
+    textAlign: 'Center',
+  },
+  {
+    field: 'numReviews',
+    headerText: 'Number of Reviews',
+    width: '120',
+    textAlign: 'Center',
+  },
+  {
+    field: 'description',
+    headerText: 'Description',
+    width: '150',
+    textAlign: 'Center',
+  },
+];
+
 export const customersData = [
   {
     CustomerID: 1,
@@ -444,6 +504,8 @@ export const employeesData = [
     avatar3,
   },
 ];
+
+
 
 export const ordersData = [
   {
