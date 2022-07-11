@@ -4,7 +4,6 @@ import { Button } from "../components";
 import SparkLine from "../components/Charts/SparkLine";
 import Stacked from "../components/Charts/Stacked";
 import { earningData, SparklineAreaData } from "../data/dummy";
-import { useStateContext } from "../contexts/ContextProvider";
 
 const ECommerce = () => {
   return (

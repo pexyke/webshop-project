@@ -29,17 +29,6 @@ const App = () => {
     <div>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
-          <div className="fixed right-4 bottom-4" style={{ zIndex: "1000S" }}>
-            <TooltipComponent content="Settings" position="Top">
-              <button
-                type="button"
-                className="text-3xl p-3 hover:drop-shadow-xl hover:bg-light-gray text-white"
-                style={{ background: "blue", borderRadius: "50%" }}
-              >
-                <FiSettings />
-              </button>
-            </TooltipComponent>
-          </div>
           {activeMenu ? (
             <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
               <Sidebar />
@@ -68,7 +57,7 @@ const App = () => {
                 
                 <Route path="/employees" element={<Protected><Employees /></Protected>} />
                 <Route path="/products" element={<Protected><Products /></Protected>} />
-                <Route path="/edit-product/:id?" element={<Protected><EditProduct /></Protected>} />
+                <Route path="/edit-product/:id" element={<Protected><EditProduct /></Protected>} />
                 <Route path="/orders" element={<Protected><Orders /></Protected>} />
                 <Route path="/customers" element={<Protected><Customers /></Protected>} />
                 <Route path="/login" element={<Protected><Login /></Protected>} />

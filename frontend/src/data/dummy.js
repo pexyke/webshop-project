@@ -453,7 +453,7 @@ export const productsGrid = [
   },
   {
     field: 'countInstock',
-    headerText: 'Count In Stock',
+    headerText: 'Stock',
     textAlign: 'Center',
     width: '120',
   },
@@ -465,7 +465,7 @@ export const productsGrid = [
   },
   {
     field: 'numReviews',
-    headerText: 'Number of Reviews',
+    headerText: 'Reviews',
     width: '120',
     textAlign: 'Center',
   },

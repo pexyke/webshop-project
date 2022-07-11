@@ -1,32 +1,28 @@
 import { React, useEffect, useState } from "react";
-import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, ContextMenu, Filter, Page, Edit, Inject, Search, Toolbar } from "@syncfusion/ej2-react-grids";
+import {
+  GridComponent,
+  ColumnsDirective,
+  ColumnDirective,
+  Resize,
+  Sort,
+  ContextMenu,
+  Filter,
+  Page,
+  Edit,
+  Inject,
+  Search,
+  Toolbar,
+} from "@syncfusion/ej2-react-grids";
 
-import http from "axios";
 import { contextMenuItems, productsGrid } from "../data/dummy";
 import { Header } from "../components";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from ".";
 import { MdOutlineEdit } from "react-icons/md";
+import http from "axios";
 
 const Products = () => {
   const [products, setProducts] = useState("");
   const navigate = useNavigate();
-
-  const [newItem, setNewItem] = useState({
-    id: "",
-    name: "",
-    category: "",
-    image: "",
-    price: "",
-    countInstock: "",
-    rating: "",
-    rumReviews: "",
-    description: "",
-  });
-
-  const postNewItem = async (value) => {
-    const response = await http.post("http://localhost:1000/api/products/new", {});
-  };
 
   useEffect(() => {
     const getProducts = async () => {
@@ -40,8 +36,17 @@ const Products = () => {
   }, []);
 
   const template = (props) => {
-    return <Link to={`/edit-product/${props.id}`}>Szerkeszt</Link>
-  }
+    return (
+      <Link
+        to={`/edit-product/${props.id}`}
+        className="flex justify-center"
+        title="Edit"
+      >
+        {" "}
+        <MdOutlineEdit />{" "}
+      </Link>
+    );
+  };
 
   console.log(products);
 
@@ -49,56 +54,37 @@ const Products = () => {
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Page" title="Products" />
+
       <button
         className="text-l p-3 hover:drop-shadow-xl hover:bg-light-gray text-white hover:drop-shadow-xl mb-5"
-        onClick={() => navigate("/edit-product")}
+        onClick={() => navigate("/edit-product/new")}
         style={{ backgroundColor: "blue", borderRadius: "10px" }}
       >
-        {" "}
         New Item
       </button>
-
-      {/* <table>
-        <thead>
-          <th>
-            <td>Műveletek</td>
-            <td>Kép</td>
-            <td>Termék név</td>
-            <td>Ár</td>
-            <td>Kategória</td>
-            <td>Description</td>
-          </th>
-        </thead>
-        <tbody>
-          {products && products.map((product) => (
-            <tr>
-              <td>
-                <Link to={`/edit-product/${product.id}`}>Szerkeszt</Link>
-              </td>
-              <td>
-                <img src={product.image} alt={product.name} />
-              </td>
-              <td>{product.name}</td>
-              <td>{product.price}</td>
-              <td>{product.category}</td>
-              <td>{product.description}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
-
-      <GridComponent id="gridcomp" dataSource={products} allowPaging allowSorting contextMenuItems={contextMenuItems} editSettings={editing} toolbar={["Search"]}>
+      <GridComponent
+        id="gridcomp"
+        dataSource={products}
+        allowPaging
+        allowSorting
+        contextMenuItems={contextMenuItems}
+        toolbar={["Search"]}
+      >
         <ColumnsDirective>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           {productsGrid.map((item, index) => {
-            if(item.field === "action") {
-                return <ColumnDirective key={index} {...item} template={template} />
+            if (item.field === "action") {
+              return (
+                <ColumnDirective key={index} {...item} template={template} />
+              );
             } else {
-                return <ColumnDirective key={index} {...item} />
-            }            
-        })}
+              return <ColumnDirective key={index} {...item} />;
+            }
+          })}
         </ColumnsDirective>
-        <Inject services={[Resize, Sort, ContextMenu, Filter, Page, Edit, Search, Toolbar]} />
+        <Inject
+          services={[Resize, Sort, ContextMenu, Filter, Page, Search, Toolbar]}
+        />
       </GridComponent>
     </div>
   );
