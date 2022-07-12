@@ -8,7 +8,7 @@ const EditProduct = () => {
   const navigate = useNavigate();
 
   const [productsLength, setProductsLength] = useState(null);
-  const [isNew, setIsNew] = useState(false);
+  const [isNew, setIsNew] = useState(true);
 
   const [newItem, setNewItem] = useState({
     id: productsLength + 1,
@@ -71,12 +71,12 @@ const EditProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    isNew ? createPost(newItem) : createEditedPost(newItem)
+
+    isNew ? createPost(newItem) : createEditedPost(newItem);
   };
 
   //meglévő módosítás
-  
+
   const postEditedProduct = (product) => http.post(`http://localhost:1000/api/products/${params.id}`, product);
 
   const createEditedPost = async (product) => {
@@ -102,8 +102,14 @@ const EditProduct = () => {
 
   useEffect(() => {
     if (params.id === "new") {
-      setIsNew(true);   
-    } 
+      console.log("truenak kéne lenni");
+      setIsNew(true);
+      console.log(isNew);
+    } else {
+      setIsNew(false)
+      console.log(isNew);
+    }
+   
 
     const getProducts = async () => {
       const response = await http.get("http://localhost:1000/api/products");
@@ -113,12 +119,8 @@ const EditProduct = () => {
       }
     };
 
- 
-
     const getProduct = async () => {
-      const response = await http.get(
-        `http://localhost:1000/api/products/id/${params.id}`
-      );
+      const response = await http.get(`http://localhost:1000/api/products/id/${params.id}`);
       if (response) {
         setNewItem({
           id: response.data[0].id,
@@ -133,33 +135,34 @@ const EditProduct = () => {
         });
       }
     };
-    !isNew ? getProduct() : getProducts()
+    const handleStart = () => {
+      if(isNew) {
+        return getProducts()
+      } else {
+        console.log("mit keresel itt?");
+        return getProduct()
+      }
+    }
+
+    handleStart()
 
   }, [params, productsLength, isNew]);
 
- 
-
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header
-        category="App"
-        title={isNew ? "Add new product" : "Edit product"}
-      />
-      {newItem && (
+      <Header category="App" title={isNew ? "Add new product" : "Edit product"} />
+      
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            flexDirection: "row",
           }}
         >
-          <form className="w-full max-w-sm" onSubmit={handleSubmit}>
+          <form className="w-full max-w-sm" onSubmit={handleSubmit} style={{boxShadow: "#f2f2f2 -2px -6px 20px",
+    padding: "30px",borderRadius: "2%"}}>
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="product-id"
-                >
+                <label className="block text-gray-500 font-bold md: mb-1 md:mb-0 pr-4" htmlFor="product-id">
                   Termék ID
                 </label>
               </div>
@@ -169,7 +172,7 @@ const EditProduct = () => {
                   id="product-id"
                   disabled
                   type="text"
-                  value={isNew ? productsLength + 1 : newItem.id}
+                  value={newItem.id}
                   placeholder="item name"
                   name="id"
                 />
@@ -177,10 +180,7 @@ const EditProduct = () => {
             </div>
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="name"
-                >
+                <label className="block text-gray-500 font-bold md: mb-1 md:mb-0 pr-4" htmlFor="name">
                   Termék neve
                 </label>
               </div>
@@ -192,17 +192,14 @@ const EditProduct = () => {
                   placeholder="Termék rövid megnevezése"
                   onChange={changeHandler}
                   name="name"
-                  value={isNew ? "" : newItem.name}
+                  value={newItem.name}
                   required
                 />
               </div>
             </div>
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="category"
-                >
+                <label className="block text-gray-500 font-bold md: mb-1 md:mb-0 pr-4" htmlFor="category">
                   Kategória
                 </label>
               </div>
@@ -212,7 +209,7 @@ const EditProduct = () => {
                   id="category"
                   type="text"
                   placeholder="Termék kategóriája"
-                  value={isNew ? "" : newItem.category}
+                  value={newItem.category}
                   name="category"
                   required
                   onChange={changeHandler}
@@ -222,10 +219,7 @@ const EditProduct = () => {
 
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="price"
-                >
+                <label className="block text-gray-500 font-bold md: mb-1 md:mb-0 pr-4" htmlFor="price">
                   Ár
                 </label>
               </div>
@@ -236,7 +230,7 @@ const EditProduct = () => {
                 <input
                   type="number"
                   name="price"
-                  value={isNew ? "" : newItem.price}
+                  value={newItem.price}
                   required
                   placeholder="0.00"
                   id="price"
@@ -248,10 +242,7 @@ const EditProduct = () => {
 
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
-                <label
-                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  htmlFor="countInstock"
-                >
+                <label className="block text-gray-500 font-bold md: mb-1 md:mb-0 pr-4" htmlFor="countInstock">
                   Készlet
                 </label>
               </div>
@@ -262,7 +253,7 @@ const EditProduct = () => {
                 <input
                   type="number"
                   name="countInstock"
-                  value={isNew ? "" : newItem.countInstock}
+                  value={newItem.countInstock}
                   required
                   placeholder="0"
                   id="countInstock"
@@ -271,54 +262,49 @@ const EditProduct = () => {
                 />
               </div>
             </div>
+            <div className="md:flex md:items-center mb-6">
+              <div className=" w-full">
+                <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                  Termék leírása
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={newItem.description}
+                  required
+                  rows="4"
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Termék leírása..."
+                  onChange={changeHandler}
+                ></textarea>
+              </div>
+            </div>
+            <div className="md:flex md:items-center mb-6">
+              <div className="w-full">
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 w-full" htmlFor="file_input">
+                  Kép feltöltés
+                </label>
+                <input
+                  className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                  aria-describedby="file_input_help"
+                  id="file_input"
+                  type="file"
+                  // value={isNew ? "" : newItem.image}
+                  onChange={(e) => handleFileUpload(e)}
+                  required={isNew ? true : false}
+                />
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                  SVG, PNG, JPG or GIF (MAX. 800x400px).
+                </p>
+              </div>
+            </div>
 
-            <label
-              htmlFor="description"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-            >
-              Termék leírása
-            </label>
-            <textarea
-              id="description"
-              name="description"
-              value={isNew ? "" : newItem.description}
-              required
-              rows="4"
-              className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Termék leírása..."
-              onChange={changeHandler}
-            ></textarea>
-            <label
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              htmlFor="file_input"
-            >
-              Kép feltöltés
-            </label>
-            <input
-              className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              aria-describedby="file_input_help"
-              id="file_input"
-              type="file"
-              // value={isNew ? "" : newItem.image}
-              onChange={(e) => handleFileUpload(e)}
-              required={isNew ? "true" : "false"}
-            />
-            <p
-              className="mt-1 text-sm text-gray-500 dark:text-gray-300"
-              id="file_input_help"
-            >
-              SVG, PNG, JPG or GIF (MAX. 800x400px).
-            </p>
-            <button
-              className="text-l p-3 hover:drop-shadow-xl hover:bg-light-gray text-white hover:drop-shadow-xl mb-5"
-              style={{ backgroundColor: "blue", borderRadius: "10px" }}
-              type="submit"
-            >
+            <button className="text-l p-3 hover:drop-shadow-xl hover:bg-light-gray text-white hover:drop-shadow-xl mb-5" style={{ backgroundColor: "blue", borderRadius: "10px" }} type="submit">
               Mentés
             </button>
           </form>
         </div>
-      )}
+      
     </div>
   );
 };

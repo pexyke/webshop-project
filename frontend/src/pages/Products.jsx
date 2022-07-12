@@ -48,7 +48,6 @@ const Products = () => {
     );
   };
 
-  console.log(products);
 
   const editing = { allowDeleting: true, allowEditing: true };
   return (
